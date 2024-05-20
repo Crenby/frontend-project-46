@@ -18,4 +18,4 @@ program
 program.parse();
 
 
-//gendiff file1.json file2.json
+//gendiff __fixtures__/file1.json __fixtures__/file2.json

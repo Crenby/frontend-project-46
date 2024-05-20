@@ -1,16 +1,31 @@
 import fs from 'fs';
 import path from 'path';
 import process from 'node:process';
-import diff from './diff.js'
+import parse from './parse.js';
+import buildTree from './treeBuilder.js';
+
+function getFullPath(filepath) {
+  return path.resolve(process.cwd(), filepath);
+}
+
+function extractFormat(filepath) {
+  return path.extname(filepath).slice(1);
+}
+
+function getDataFile(filepath) {
+  return parse(fs.readFileSync(filepath), extractFormat(filepath));
+}
 
 function parser (path1, path2) {
-  const fullPath1 = path.resolve(process.cwd(), path1); 
-  const data1 = JSON.parse(fs.readFileSync(fullPath1));
+  const fullPath1 = getFullPath(path1); 
+  const data1 = getDataFile(fullPath1);
 
-  const fullPath2 = path.resolve(process.cwd(), path2); 
-  const data2 = JSON.parse(fs.readFileSync(fullPath2));
+  const fullPath2 = getFullPath(path2); 
+  const data2 = getDataFile(fullPath2);
 
-  return diff(data1, data2);
+  const tree = buildTree(data1, data2);
+  return tree;
+
 };
 
 export default parser;
