@@ -3,6 +3,8 @@ import path from 'path';
 import process from 'node:process';
 import parse from './parse.js';
 import buildTree from './treeBuilder.js';
+import diff from './diff.js';
+import genStylish from './formats/stylish.js';
 
 function getFullPath(filepath) {
   return path.resolve(process.cwd(), filepath);
@@ -24,8 +26,9 @@ function parser (path1, path2) {
   const data2 = getDataFile(fullPath2);
 
   const tree = buildTree(data1, data2);
-  return tree;
-
+  
+  //return diff(data1, data2);
+  return genStylish(tree);
 };
 
 export default parser;
