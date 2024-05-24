@@ -3,8 +3,7 @@ import path from 'path';
 import process from 'node:process';
 import parse from './parse.js';
 import buildTree from './treeBuilder.js';
-import diff from './diff.js';
-import genStylish from './formats/stylish.js';
+import formater from './formats/formater.js';
 
 function getFullPath(filepath) {
   return path.resolve(process.cwd(), filepath);
@@ -18,7 +17,7 @@ function getDataFile(filepath) {
   return parse(fs.readFileSync(filepath), extractFormat(filepath));
 }
 
-function parser (path1, path2) {
+function parser (path1, path2, format = 'json') {
   const fullPath1 = getFullPath(path1); 
   const data1 = getDataFile(fullPath1);
 
@@ -27,8 +26,7 @@ function parser (path1, path2) {
 
   const tree = buildTree(data1, data2);
   
-  //return diff(data1, data2);
-  return genStylish(tree);
+  return formater(tree, format);
 };
 
 export default parser;

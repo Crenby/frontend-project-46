@@ -11,9 +11,9 @@ function obj(data, iter = 2) {
     } else {
       str += `${space}  ${key}: ${data[key]}\n`;
     }
-    
   }
-  str += `${space}}`;
+  //str += `${space}}`;
+  str += `${' '.repeat(iter)}}`;
   return str;
 }
 
@@ -61,8 +61,9 @@ function genStylish(data, iter = 2) {
     }
   })
 
-  str += `${' '.repeat(iter)}}\n`;
+  //str += `${' '.repeat(iter)}}`;
+  str += `${space}}`;
   return str;
 }
 
-export default genStylish;
+export { genStylish, isObject };
