@@ -1,15 +1,42 @@
+import { readFileSync } from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import parser from '../src/index.js';
 
-test('test', () => {
-  const answerForTest1 = [
-    { key: 'follow', value: false, type: 'deleted' },
-    { key: 'host', value: 'hexlet.io', type: 'unchanged' },
-    { key: 'proxy', value: '123.234.53.22', type: 'deleted' },
-    { key: 'timeout', value1: 50, value2: 20, type: 'changed' },
-    { key: 'verbose', value: true, type: 'added' }
-  ];
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-  expect(parser('./__fixtures__/file1.json', './__fixtures__/file2.json')).toStrictEqual(answerForTest1);
-})
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
+test('stylish json', () => {
+  const filename1 = getFixturePath('file3.json');
+  const filename2 = getFixturePath('file4.json');
+  const resultname = getFixturePath('stylish.txt');
+  const result = readFileSync(resultname, 'utf8');
+  expect(parser(filename1, filename2, 'stylish')).toEqual(result);
+});
 
+test('stylish yml', () => {
+  const filename1 = getFixturePath('file1.yml');
+  const filename2 = getFixturePath('file2.yml');
+  const resultname = getFixturePath('stylish.txt');
+  const result = readFileSync(resultname, 'utf8');
+  expect(parser(filename1, filename2, 'stylish')).toEqual(result);
+});
+
+test('plain json', () => {
+  const filename1 = getFixturePath('file3.json');
+  const filename2 = getFixturePath('file4.json');
+  const resultname = getFixturePath('plain.txt');
+  const result = readFileSync(resultname, 'utf8');
+  expect(parser(filename1, filename2, 'plain')).toEqual(result);
+});
+
+test('plain yml', () => {
+  const filename1 = getFixturePath('file1.yml');
+  const filename2 = getFixturePath('file2.yml');
+  const resultname = getFixturePath('plain.txt');
+  const result = readFileSync(resultname, 'utf8');
+  expect(parser(filename1, filename2, 'plain')).toEqual(result);
+});
