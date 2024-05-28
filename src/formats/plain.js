@@ -1,5 +1,10 @@
 import { isObject } from "./stylish.js";
 
+function genPlainWithoutSpaces(data) {
+  let newStr = genPlain(data);
+  return newStr.slice(0, -1);
+}
+
 function genPlain(data, name = "") {
   let str = "";
   const complexValue = '[complex value]';
@@ -8,7 +13,6 @@ function genPlain(data, name = "") {
       str += `Property '${name}${item.key}' was removed\n`;
     }
     if(item.type === 'added') { 
-      //str += `Property '${name}${item.key}' was added with value: ${isObject(item.value) ? complexValue : `'${item.value}'`}\n`;
       str += `Property '${name}${item.key}' was added with value: ${isObject(item.value) ? complexValue : typeof(item.value) === 'string' ? `'${item.value}'` : item.value}\n`;
     }
     if(item.type === 'changed') { 
@@ -18,7 +22,8 @@ function genPlain(data, name = "") {
       str += genPlain(item.children, name + `${item.key}.`);
     }
   })
+
   return str;
 }
 
-export default genPlain;
+export default genPlainWithoutSpaces;
