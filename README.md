@@ -19,7 +19,7 @@ Utility features:
 
 ### Setup
 
-    git clone git@github.com:bmwmtv/frontend-project-46.git
+    git clone git@github.com:Crenby/frontend-project-46.git
     cd frontend-project-46
     make install
     sudo npm link
