@@ -12,7 +12,6 @@ function obj(data, iter = 2) {
       str += `${space}  ${key}: ${data[key]}\n`;
     }
   }
-  //str += `${space}}`;
   str += `${' '.repeat(iter)}}`;
   return str;
 }

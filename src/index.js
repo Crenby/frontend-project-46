@@ -17,7 +17,7 @@ function getDataFile(filepath) {
   return parse(fs.readFileSync(filepath), extractFormat(filepath));
 }
 
-function parser (path1, path2, format = 'json') {
+function genDiff (path1, path2, format = 'json') {
   const fullPath1 = getFullPath(path1); 
   const data1 = getDataFile(fullPath1);
 
@@ -29,4 +29,4 @@ function parser (path1, path2, format = 'json') {
   return formater(tree, format);
 };
 
-export default parser;
+export default genDiff;
