@@ -17,7 +17,7 @@ function getDataFile(filepath) {
   return parse(fs.readFileSync(filepath), extractFormat(filepath));
 }
 
-function genDiff (path1, path2, format = 'json') {
+function genDiff (path1, path2, format = 'stylish') {
   const fullPath1 = getFullPath(path1); 
   const data1 = getDataFile(fullPath1);
 
