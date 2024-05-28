@@ -20,7 +20,7 @@ function obj(data, iter = 2) {
   return str;
 }
 
-function genStylish(data, iter = 2) {
+function genStylish(data, iter = 0) {
   let str = '{\n';
 
   let space = ' '.repeat(iter); 
