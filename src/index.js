@@ -17,16 +17,16 @@ function getDataFile(filepath) {
   return parse(fs.readFileSync(filepath), extractFormat(filepath));
 }
 
-function genDiff (path1, path2, format = 'stylish') {
-  const fullPath1 = getFullPath(path1); 
+function genDiff(path1, path2, format = 'stylish') {
+  const fullPath1 = getFullPath(path1);
   const data1 = getDataFile(fullPath1);
 
-  const fullPath2 = getFullPath(path2); 
+  const fullPath2 = getFullPath(path2);
   const data2 = getDataFile(fullPath2);
 
   const tree = buildTree(data1, data2);
-  
+
   return formater(tree, format);
-};
+}
 
 export default genDiff;
