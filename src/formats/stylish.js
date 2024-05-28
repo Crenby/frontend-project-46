@@ -2,7 +2,7 @@ function isObject(value) {
   return value !== null && typeof value === 'object';
 }
 
-function obj(data, iter = 2) {
+function obj(data, iter = 4) {
   let space = ' '.repeat(iter); 
   let str = '{\n';
   if(!isObject(data)) {
@@ -27,20 +27,20 @@ function genStylish(data, iter = 0) {
 
   data.map((item) => {
     if(item.type === 'unchanged') {
-      str += `${space}  ${item.key}: ${obj(item.value, iter + 2)}\n`;
+      str += `${space}    ${item.key}: ${obj(item.value, iter + 2)}\n`;
     }
     if(item.type === 'deleted') {
-      str += `${space}- ${item.key}: ${obj(item.value, iter + 2)}\n`;
+      str += `${space}  - ${item.key}: ${obj(item.value, iter + 2)}\n`;
     }
     if(item.type === 'added') { 
-      str += `${space}+ ${item.key}: ${obj(item.value, iter + 2)}\n`;
+      str += `${space}  + ${item.key}: ${obj(item.value, iter + 2)}\n`;
     }
     if(item.type === 'changed') { 
-      str += `${space}- ${item.key}: ${obj(item.value1, iter + 2)}\n`;
-      str += `${space}+ ${item.key}: ${obj(item.value2, iter + 2)}\n`;   
+      str += `${space}  - ${item.key}: ${obj(item.value1, iter + 2)}\n`;
+      str += `${space}  + ${item.key}: ${obj(item.value2, iter + 2)}\n`;   
     }
     if(item.type === 'nested') {
-      str += `${space}  ${item.key}: ${genStylish(item.children, iter + 2)}\n`;
+      str += `${space}    ${item.key}: ${genStylish(item.children, iter + 4)}\n`;
     }
   })
 
