@@ -1,10 +1,5 @@
 import { isObject } from './stylish.js';
 
-function genPlainWithoutSpaces(data) {
-  const newStr = genPlain(data);
-  return newStr.slice(0, -1);
-}
-
 function genPlain(data, name = '') {
   let str = '';
   const complexValue = '[complex value]';
@@ -21,9 +16,15 @@ function genPlain(data, name = '') {
     if (item.type === 'nested') {
       str += genPlain(item.children, `${name}${item.key}.`);
     }
+    return true;
   });
 
   return str;
+}
+
+function genPlainWithoutSpaces(data) {
+  const newStr = genPlain(data);
+  return newStr.slice(0, -1);
 }
 
 export default genPlainWithoutSpaces;
