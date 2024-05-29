@@ -11,23 +11,21 @@ function prepareValue(value) {
 }
 
 function genPlain(data, name = '') {
-  const str = [];
-  data.map((item) => {
+  const out = data.map((item) => {
     if (item.type === 'deleted') {
-      str.push(`Property '${name}${item.key}' was removed\n`);
+      return `Property '${name}${item.key}' was removed\n`;
     }
     if (item.type === 'added') {
-      str.push(`Property '${name}${item.key}' was added with value: ${prepareValue(item.value)}\n`);
+      return `Property '${name}${item.key}' was added with value: ${prepareValue(item.value)}\n`;
     }
     if (item.type === 'changed') {
-      str.push(`Property '${name}${item.key}' was updated. From ${prepareValue(item.value1)} to ${prepareValue(item.value2)}\n`);
+      return `Property '${name}${item.key}' was updated. From ${prepareValue(item.value1)} to ${prepareValue(item.value2)}\n`;
     }
     if (item.type === 'nested') {
-      str.push(genPlain(item.children, `${name}${item.key}.`));
+      return genPlain(item.children, `${name}${item.key}.`);
     }
-    return true;
   });
-  return str.join('');
+  return out.join('');
 }
 
 function genPlainWithoutSpaces(data) {
