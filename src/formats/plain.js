@@ -24,6 +24,7 @@ function genPlain(data, name = '') {
     if (item.type === 'nested') {
       return genPlain(item.children, `${name}${item.key}.`);
     }
+    return;
   });
   return out.join('');
 }
