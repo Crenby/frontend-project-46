@@ -1,10 +1,10 @@
-import { genStylish } from './stylish.js';
+import { addBracket } from './stylish.js';
 import genPlain from './plain.js';
 import genJson from './json.js';
 
 const formaters = {
   json: genJson,
-  stylish: genStylish,
+  stylish: addBracket,
   plain: genPlain,
 };
 
