@@ -8,13 +8,14 @@ function obj(data, iter = 8) {
   if (!isObject(data)) {
     return `${data}`;
   }
-  for (const key in data) {
-    if (isObject(data[key])) {
-      return `{\n${space}    ${key}: ${obj(data[key], iter + 4)}\n${space}}`;
+  const out = Object.entries(data).map((item) => {
+    if (isObject(item[1])) {
+      return `\n${space}    ${item[0]}: ${obj(item[1], iter + 4)}`;
     } else {
-      return `{\n${space}    ${key}: ${data[key]}\n${space}}`;
+      return `\n${space}    ${item[0]}: ${item[1]}`;
     }
-  }
+  })
+  return `{${out.join('')}\n${space}}`;
 }
 
 function genStylish(data, iter = 0) {
