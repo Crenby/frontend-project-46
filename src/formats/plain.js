@@ -24,7 +24,10 @@ function genPlain(data, name = '') {
     if (item.type === 'nested') {
       return genPlain(item.children, `${name}${item.key}.`);
     }
-    return '';
+    if (item.type === 'unchanged') {
+      return '';
+    }
+    throw new Error(`Unknown type: ${item.type}`);
   });
   return out.join('');
 }

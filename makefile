@@ -9,3 +9,6 @@ stylish:
 
 plain:
 	gendiff --format 'plain' __fixtures__/file3.json __fixtures__/file4.json
+
+error:
+	gendiff --format 'qwerttyu' __fixtures__/file3.json __fixtures__/file4.json

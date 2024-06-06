@@ -2,10 +2,17 @@ import { addBracket } from './stylish.js';
 import genPlain from './plain.js';
 import genJson from './json.js';
 
-const formaters = {
-  json: genJson,
-  stylish: addBracket,
-  plain: genPlain,
-};
+function formaters(data, format) {
+  switch (format) {
+    case 'json':
+      return genJson(data);
+    case 'stylish':
+      return addBracket(data);
+    case 'plain':
+      return genPlain(data);
+    default:
+      throw new Error(`${format} is not supported`);
+  }
+}
 
-export default (data, format) => formaters[format](data);
+export default formaters;
