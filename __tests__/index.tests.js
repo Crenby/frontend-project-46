@@ -9,13 +9,13 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 
 const data = [
   {
-    file1: 'file3.json', file2: 'file4.json', resName: 'stylish.txt', format: 'stylish', 
+    file1: 'file3.json', file2: 'file4.json', resName: 'stylish.txt', format: 'stylish',
   },
   {
-    file1: 'file1.yml', file2: 'file2.yml', resName: 'stylish.txt', format: 'stylish', 
+    file1: 'file1.yml', file2: 'file2.yml', resName: 'stylish.txt', format: 'stylish',
   },
   {
-    file1: 'file3.json', file2: 'file4.json', resName: 'plain.txt', format: 'plain', 
+    file1: 'file3.json', file2: 'file4.json', resName: 'plain.txt', format: 'plain',
   },
   {
     file1: 'file1.yml', file2: 'file2.yml', resName: 'plain.txt', format: 'plain',
